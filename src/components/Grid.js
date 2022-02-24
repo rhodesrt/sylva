@@ -1,6 +1,11 @@
 import "./componentStyles.css";
-import React, { useEffect, useState } from "react";
-import { createSylvaArray } from "./helpers.js";
+import React, { useEffect, useState, useRef } from "react";
+import {
+  createSylvaArray,
+  initialConditionSetter,
+  getSurroundingUnits,
+  rollNumber,
+} from "./helpers.js";
 
 const Grid = () => {
   return (
@@ -51,17 +56,7 @@ const SylvaWorld = () => {
     });
   }, []);
   // end responsive grid dimensions
-
-  // Sylva Engine
-  const [sylvaUnits, setSylvaUnits] = useState(createSylvaArray());
-  // each sylva unit has conditions in its own useRef()
-  // useRef() hook allows one to store a mutable object in component
-  // it triggers its own sylva cycle every 0.5 seconds
-  // condition increments are based on adjacent units
-  // sylvaCycle()
-  //   updates useRef object based on increment value and identity
-  //   if increment causes id change, update grid-wide state
-  //   pass updateMe() function to individual unit that records index and updates grid-wide state
+  let sylvaUnits = createSylvaArray(625);
 
   return (
     <div
@@ -72,27 +67,69 @@ const SylvaWorld = () => {
       }}
     >
       {sylvaUnits.map((unit, index) => {
-        return <SylvaUnit index={index} key={index} />;
+        return <SylvaUnit key={index} index={index} />;
       })}
     </div>
   );
 };
 
 const SylvaUnit = (props) => {
-  const [conditions, setConditions] = useState(initialConditionSetter()); //todo
+  const conditions = useRef(initialConditionSetter());
   const [backgroundColor, setBackgroundColor] = useState("black");
 
-  function runCycle() {}
-
-  useEffect(() => {
+  function runCycle() {
+    // every 0.5 seconds
     setTimeout(() => {
+      // increment conditions based on incrementMultiplier
+      let surroundingUnits = getSurroundingUnits(props.index);
+      surroundingUnits.forEach((color) => {
+        if (color === "green") {
+          conditions.current.primaryConsumer++;
+        } else if (color === "blue") {
+          conditions.current.secondaryConsumer++;
+        } else if (color === "red") {
+          conditions.current.photosynthetic++;
+        }
+      });
+      // check if conditions meet requirements for identity change
+      let newIdentity = "";
+      if (conditions.current.primaryConsumer > 6) {
+        newIdentity = "primaryConsumer";
+      } else if (conditions.current.secondaryConsumer > 9) {
+        newIdentity = "secondaryConsumer";
+      } else if (conditions.current.photosynthetic > 6) {
+        newIdentity = "photosynthetic";
+      } else {
+        newIdentity = "photosynthetic";
+      }
+
+      if (newIdentity !== conditions.current.stage) {
+        if (newIdentity === "photosynthetic") {
+          setBackgroundColor("green");
+        } else if (newIdentity === "primaryConsumer") {
+          setBackgroundColor("blue");
+        } else if (newIdentity === "secondaryConsumer") {
+          setBackgroundColor("red");
+        }
+      }
+      // reset conditions
+      conditions.current = initialConditionSetter();
+      conditions.current.stage = newIdentity;
       runCycle();
-    }, 500);
-  }, [conditions]);
+    }, 2000 + Math.random() * 2000);
+  }
+  useEffect(() => {
+    runCycle();
+  }, []);
+
+  // Develop evolution dependencies
+  // Develop custom increment functions for each life form
+  // Ping surrounding environment to customize abiotic increment multipliers
 
   return (
-    <div className="sylva-unit" style={{ backgroundColor: backgroundColor }}>
-      {props.index}
-    </div>
+    <div
+      className="sylva-unit"
+      style={{ backgroundColor: backgroundColor }}
+    ></div>
   );
 };

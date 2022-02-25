@@ -26,7 +26,7 @@ a:visited {
   height: 100vh;
   max-width: 1400px;
   display: grid;
-  grid-template-columns: 60% 40%;
+  grid-template-columns: 60% 1fr;
   grid-template-rows: 15% 1fr;
 }
 

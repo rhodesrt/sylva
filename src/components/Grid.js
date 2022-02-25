@@ -65,12 +65,10 @@ const SylvaWorld = () => {
 
 const SylvaUnit = (props) => {
   const conditions = useRef(initialConditionSetter(15, 0, 0));
-  const [backgroundColor, setBackgroundColor] = useState("black");
+  const [backgroundColor, setBackgroundColor] = useState(null);
 
   useEffect(() => {
-    if (props.index === 99) {
-      window.dispatchEvent(new Event("resize"));
-    }
+    setBackgroundColor("black");
   }, []);
 
   function runCycle() {

@@ -4,7 +4,6 @@ import {
   createSylvaArray,
   initialConditionSetter,
   getSurroundingUnits,
-  rollNumber,
 } from "./helpers.js";
 
 const Grid = () => {

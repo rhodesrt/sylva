@@ -54,16 +54,3 @@ export function getSurroundingUnits(index) {
   });
   return surroundingUnits;
 }
-
-export function rollNumber(rolls) {
-  if (rolls === 0) {
-    return 0;
-  }
-  let rollArray = [];
-  for (let i = 0; i < rolls; i++) {
-    rollArray.push(Math.floor(Math.random() * 100));
-  }
-  return rollArray.reduce((prev, next) => {
-    return Math.max(prev, next);
-  });
-}

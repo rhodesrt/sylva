@@ -1,6 +1,6 @@
-import Header from "./components/Header";
-import LeftPanel from "./components/LeftPanel";
-import Grid from "./components/Grid";
+import Header from "./components/Header.js";
+import LeftPanel from "./components/LeftPanel.js";
+import Grid from "./components/Grid.js";
 
 function App() {
   return (

@@ -43,7 +43,6 @@ const SylvaWorld = () => {
   useEffect(() => {
     triggerDimensionSet();
     window.addEventListener("resize", triggerDimensionSet);
-    window.dispatchEvent(new Event("resize"));
   }, []);
   // end responsive grid dimensions
 
@@ -67,6 +66,12 @@ const SylvaWorld = () => {
 const SylvaUnit = (props) => {
   const conditions = useRef(initialConditionSetter(15, 0, 0));
   const [backgroundColor, setBackgroundColor] = useState("black");
+
+  useEffect(() => {
+    if (props.index === 99) {
+      window.dispatchEvent(new Event("resize"));
+    }
+  }, []);
 
   function runCycle() {
     // every 0.5 seconds

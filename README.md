@@ -1,4 +1,4 @@
-Sylva is a population dynamics simulator designed to mimic the conditions of a Savannah.
+[Sylva](https://www.rhodesrt.github.io/sylva) is a population dynamics simulator designed to mimic the conditions of a Savannah.
 
 Inspired by the Lotka-Volterra equations and the Nicholson-Bailey model, which are both frequently used to describe the dynamics of biological systems in which two species interact, either as predator/prey or host/parasite, Sylva adds further complexity by introducing a ubiquitous substrate in the form of plant mass.
 

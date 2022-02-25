@@ -1,4 +1,4 @@
-[Sylva](rhodesrt.github.io/sylva) is a population dynamics simulator designed to mimic the conditions of a Savannah.
+[Sylva](https://rhodesrt.github.io/sylva/) is a population dynamics simulator designed to mimic the conditions of a Savannah.
 
 Inspired by the Lotka-Volterra equations and the Nicholson-Bailey model, which are both frequently used to describe the dynamics of biological systems in which two species interact, either as predator/prey or host/parasite, Sylva adds further complexity by introducing a ubiquitous substrate in the form of plant mass.
 
@@ -10,4 +10,4 @@ Grass grows of its own accord due to the presence of sunlight. At a critical per
 
 Sylva is accomplished programmatically with JavaScript and React, as well as a charts.js line graphing tool.
 
-If you would like to see the simulation in action, please click on this [Demo](rhodesrt.github.io/sylva)
+If you would like to see the simulation in action, please click on this [Demo](https://rhodesrt.github.io/sylva/)

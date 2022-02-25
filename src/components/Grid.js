@@ -20,10 +20,10 @@ export default Grid;
 const SylvaWorld = () => {
   // responsive grid dimensions
   const [dimensions, setDimensions] = useState({
-    height: 200,
-    width: 200,
+    height: null,
+    width: null,
   });
-  useEffect(() => {
+  function triggerDimensionSet() {
     let gridContainer = document.querySelector(".grid-container");
     let gridWidth = gridContainer.offsetWidth;
     let gridHeight = gridContainer.offsetHeight;
@@ -39,21 +39,14 @@ const SylvaWorld = () => {
         width: 0.8 * gridHeight,
       });
     }
-    window.addEventListener("resize", () => {
-      let gridWidth = gridContainer.offsetWidth;
-      let gridHeight = gridContainer.offsetHeight;
-      if (gridWidth <= gridHeight) {
-        setDimensions({
-          height: 0.8 * gridWidth,
-          width: 0.8 * gridWidth,
-        });
-      } else {
-        setDimensions({
-          height: 0.8 * gridHeight,
-          width: 0.8 * gridHeight,
-        });
-      }
-    });
+  }
+
+  useEffect(() => {
+    triggerDimensionSet();
+    window.addEventListener("resize", triggerDimensionSet());
+    return () => {
+      window.removeEventListener("resize", triggerDimensionSet());
+    };
   }, []);
   // end responsive grid dimensions
 

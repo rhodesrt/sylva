@@ -56,7 +56,7 @@ const SylvaWorld = () => {
     });
   }, []);
   // end responsive grid dimensions
-  let sylvaUnits = createSylvaArray(625);
+  let sylvaUnits = createSylvaArray(256);
 
   return (
     <div
@@ -74,7 +74,7 @@ const SylvaWorld = () => {
 };
 
 const SylvaUnit = (props) => {
-  const conditions = useRef(initialConditionSetter());
+  const conditions = useRef(initialConditionSetter(15, 0, 0));
   const [backgroundColor, setBackgroundColor] = useState("black");
 
   function runCycle() {
@@ -93,13 +93,11 @@ const SylvaUnit = (props) => {
       });
       // check if conditions meet requirements for identity change
       let newIdentity = "";
-      if (conditions.current.primaryConsumer > 6) {
+      if (conditions.current.primaryConsumer >= 9) {
         newIdentity = "primaryConsumer";
-      } else if (conditions.current.secondaryConsumer > 9) {
+      } else if (conditions.current.secondaryConsumer >= 9) {
         newIdentity = "secondaryConsumer";
-      } else if (conditions.current.photosynthetic > 6) {
-        newIdentity = "photosynthetic";
-      } else {
+      } else if (conditions.current.photosynthetic >= 7) {
         newIdentity = "photosynthetic";
       }
 
@@ -113,7 +111,7 @@ const SylvaUnit = (props) => {
         }
       }
       // reset conditions
-      conditions.current = initialConditionSetter();
+      conditions.current = initialConditionSetter(0, 0, 0);
       conditions.current.stage = newIdentity;
       runCycle();
     }, 2000 + Math.random() * 2000);
@@ -121,10 +119,6 @@ const SylvaUnit = (props) => {
   useEffect(() => {
     runCycle();
   }, []);
-
-  // Develop evolution dependencies
-  // Develop custom increment functions for each life form
-  // Ping surrounding environment to customize abiotic increment multipliers
 
   return (
     <div

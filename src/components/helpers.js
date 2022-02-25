@@ -8,12 +8,12 @@ export const createSylvaArray = (size) => {
   return array;
 };
 
-export const initialConditionSetter = () => {
+export const initialConditionSetter = (photo, primary, secondary) => {
   return {
     stage: "",
-    photosynthetic: 0,
-    primaryConsumer: 0,
-    secondaryConsumer: 0,
+    photosynthetic: photo,
+    primaryConsumer: primary,
+    secondaryConsumer: secondary,
   };
 };
 

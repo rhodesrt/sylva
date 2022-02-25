@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/sylva/static/css/main.5989f25c.css",
-    "main.js": "/sylva/static/js/main.13da8eb8.js",
+    "main.js": "/sylva/static/js/main.2372a968.js",
     "index.html": "/sylva/index.html",
     "main.5989f25c.css.map": "/sylva/static/css/main.5989f25c.css.map",
-    "main.13da8eb8.js.map": "/sylva/static/js/main.13da8eb8.js.map"
+    "main.2372a968.js.map": "/sylva/static/js/main.2372a968.js.map"
   },
   "entrypoints": [
     "static/css/main.5989f25c.css",
-    "static/js/main.13da8eb8.js"
+    "static/js/main.2372a968.js"
   ]
 }

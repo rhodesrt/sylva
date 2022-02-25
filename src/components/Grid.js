@@ -17,45 +17,10 @@ const Grid = () => {
 export default Grid;
 
 const SylvaWorld = () => {
-  // responsive grid dimensions
-  const [dimensions, setDimensions] = useState({
-    height: null,
-    width: null,
-  });
-  function triggerDimensionSet() {
-    let gridContainer = document.querySelector(".grid-container");
-    let gridWidth = gridContainer.offsetWidth;
-    let gridHeight = gridContainer.offsetHeight;
-
-    if (gridWidth <= gridHeight) {
-      setDimensions({
-        height: 0.8 * gridWidth,
-        width: 0.8 * gridWidth,
-      });
-    } else {
-      setDimensions({
-        height: 0.8 * gridHeight,
-        width: 0.8 * gridHeight,
-      });
-    }
-  }
-
-  useEffect(() => {
-    triggerDimensionSet();
-    window.addEventListener("resize", triggerDimensionSet);
-  }, []);
-  // end responsive grid dimensions
-
   let sylvaUnits = createSylvaArray(256);
 
   return (
-    <div
-      className="sylvaWorld-container"
-      style={{
-        height: `${dimensions.height}px`,
-        width: `${dimensions.width}px`,
-      }}
-    >
+    <div className="sylvaWorld-container">
       {sylvaUnits.map((unit, index) => {
         return <SylvaUnit key={index} index={index} />;
       })}

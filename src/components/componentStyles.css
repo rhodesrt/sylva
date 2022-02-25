@@ -62,7 +62,8 @@ a:visited {
   justify-content: center;
 }
 .sylvaWorld-container {
-  width: 80%;
+  width: calc(250px + 5vw);
+  height: calc(250px + 5vw);
   display: grid;
   grid-template-columns: repeat(16, 1fr);
   grid-template-rows: repeat(16, 1fr);

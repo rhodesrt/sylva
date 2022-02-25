@@ -42,10 +42,7 @@ const SylvaWorld = () => {
 
   useEffect(() => {
     triggerDimensionSet();
-    window.addEventListener("resize", triggerDimensionSet());
-    return () => {
-      window.removeEventListener("resize", triggerDimensionSet());
-    };
+    window.addEventListener("resize", triggerDimensionSet);
   }, []);
   // end responsive grid dimensions
 

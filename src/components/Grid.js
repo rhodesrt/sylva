@@ -65,11 +65,7 @@ const SylvaWorld = () => {
 
 const SylvaUnit = (props) => {
   const conditions = useRef(initialConditionSetter(15, 0, 0));
-  const [backgroundColor, setBackgroundColor] = useState(null);
-
-  useEffect(() => {
-    setBackgroundColor("black");
-  }, []);
+  const [backgroundColor, setBackgroundColor] = useState("black");
 
   function runCycle() {
     // every 0.5 seconds

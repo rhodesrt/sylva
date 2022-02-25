@@ -8,29 +8,20 @@ import {
 } from "./helpers.js";
 
 const Grid = () => {
-  let dimensions = {};
-  useEffect(() => {
-    let gridContainer = document.querySelector(".grid-container");
-    let dimensions = {
-      height: gridContainer.offsetHeight,
-      width: gridContainer.offsetWidth,
-    };
-  }, []);
-
   return (
     <div className="grid-container">
-      <SylvaWorld dimensions={dimensions} />
+      <SylvaWorld />
     </div>
   );
 };
 
 export default Grid;
 
-const SylvaWorld = (props) => {
+const SylvaWorld = () => {
   // responsive grid dimensions
   const [dimensions, setDimensions] = useState({
-    height: props.dimensions.height,
-    width: props.dimensions.width,
+    height: 200,
+    width: 200,
   });
   useEffect(() => {
     let gridContainer = document.querySelector(".grid-container");

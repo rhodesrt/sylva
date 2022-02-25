@@ -22,7 +22,7 @@ const SylvaWorld = () => {
     height: null,
     width: null,
   });
-  const triggerDimensionSet = () => {
+  function triggerDimensionSet() {
     let gridContainer = document.querySelector(".grid-container");
     let gridWidth = gridContainer.offsetWidth;
     let gridHeight = gridContainer.offsetHeight;
@@ -38,7 +38,7 @@ const SylvaWorld = () => {
         width: 0.8 * gridHeight,
       });
     }
-  };
+  }
 
   useEffect(() => {
     triggerDimensionSet();
